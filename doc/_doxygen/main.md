@@ -1,5 +1,5 @@
 # Introduction
 
-This is the Doxygen documentation for [example-application].
+This is the Doxygen documentation for [firmware-template].
 
-[example-application]: https://github.com/zephyrproject-rtos/example-application
+[firmware-template]: https://github.com/technoculture/firmware-template

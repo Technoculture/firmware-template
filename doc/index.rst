@@ -1,7 +1,7 @@
-Welcome to Example Application's documentation!
+Welcome to Firmware Template's documentation!
 ===============================================
 
-This is a simple Sphinx documentation setup for ``example-application``.
+This is a simple Sphinx documentation setup for ``firmware-template``.
 
 .. toctree::
    :maxdepth: 2

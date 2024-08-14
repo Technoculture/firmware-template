@@ -4,7 +4,7 @@
 
 '''example_west_command.py
 
-Example of a west extension in the example-application repository.'''
+Example of a west extension in the firmware-template repository.'''
 
 from west.commands import WestCommand  # your extension must subclass this
 from west import log                   # use this for user output

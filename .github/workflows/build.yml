@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          path: zephyr-firmware-template
+          path: firmware-template
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -27,11 +27,11 @@ jobs:
       - name: Setup Zephyr project
         uses: zephyrproject-rtos/action-zephyr-setup@v1
         with:
-          app-path: zephyr-firmware-template
+          app-path: firmware-template
           toolchains: arm-zephyr-eabi
 
       - name: Build firmware
-        working-directory: zephyr-firmware-template
+        working-directory: firmware-template
         shell: bash
         run: |
           if [ "${{ runner.os }}" = "Windows" ]; then
@@ -40,7 +40,7 @@ jobs:
           west twister -T app -v --inline-logs --integration $EXTRA_TWISTER_FLAGS
 
       - name: Twister Tests
-        working-directory: zephyr-firmware-template
+        working-directory: firmware-template
         shell: bash
         run: |
           if [ "${{ runner.os }}" = "Windows" ]; then

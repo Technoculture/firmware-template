@@ -1,10 +1,10 @@
-# Zephyr Firmware Template
+# Firmware Template
 
-<a href="https://github.com/zephyrproject-rtos/example-application/actions/workflows/build.yml?query=branch%3Amain">
-  <img src="https://github.com/zephyrproject-rtos/example-application/actions/workflows/build.yml/badge.svg?event=push">
+<a href="https://github.com/technoculture/firmware-template/actions/workflows/build.yml?query=branch%3Amain">
+  <img src="https://github.com/technoculture/firmware-template/actions/workflows/build.yml/badge.svg?event=push">
 </a>
-<a href="https://github.com/zephyrproject-rtos/example-application/actions/workflows/docs.yml?query=branch%3Amain">
-  <img src="https://github.com/zephyrproject-rtos/example-application/actions/workflows/docs.yml/badge.svg?event=push">
+<a href="https://github.com/technoculture/firmware-template/actions/workflows/docs.yml?query=branch%3Amain">
+  <img src="https://github.com/technoculture/firmware-template/actions/workflows/docs.yml/badge.svg?event=push">
 </a>
 <a href="https://zephyrproject-rtos.github.io/example-application">
   <img alt="Documentation" src="https://img.shields.io/badge/documentation-3D578C?logo=sphinx&logoColor=white">
@@ -15,7 +15,7 @@
 <br />
 <img width="360" alt="shape_3FWSg8mxSBF3motfyvrGN at 24-08-13 17 33 10" src="https://github.com/user-attachments/assets/c300b66f-24a9-4c4f-a74e-2d8c7c23c4da">
 
-This repository contains a Zephyr example application. The main purpose of this
+This repository contains a Zephyr firmware template. The main purpose of this
 repository is to serve as a reference on how to structure Zephyr-based
 applications. Some of the features demonstrated in this example are:
 
@@ -57,12 +57,12 @@ environment. Follow the official
 ### Initialization
 
 The first step is to initialize the workspace folder (``my-workspace``) where
-the ``example-application`` and all Zephyr modules will be cloned. Run the following
+the ``firmware-template`` and all Zephyr modules will be cloned. Run the following
 command:
 
 ```shell
 # initialize my-workspace for the panomic-application (main branch)
-west init -m git@github.com:Technoculture/panomic-tray-firmware --mr main panomic-workspace
+west init -m https://github.com/Technoculture/firmware-template --mr main panomic-workspace
 # update Zephyr modules
 cd panomic-workspace
 west update

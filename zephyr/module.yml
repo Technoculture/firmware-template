@@ -3,7 +3,7 @@
 
 build:
   # Path to the Kconfig file that will be sourced into Zephyr Kconfig tree under
-  # Zephyr > Modules > example-application. Path is relative from root of this
+  # Zephyr > Modules > firmware-template. Path is relative from root of this
   # repository.
   kconfig: Kconfig
   # Path to the folder that contains the CMakeLists.txt file to be included by
