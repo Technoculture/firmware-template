@@ -1,4 +1,4 @@
-# Zephyr Example Application
+# Zephyr Firmware Template
 
 <a href="https://github.com/zephyrproject-rtos/example-application/actions/workflows/build.yml?query=branch%3Amain">
   <img src="https://github.com/zephyrproject-rtos/example-application/actions/workflows/build.yml/badge.svg?event=push">
@@ -12,6 +12,8 @@
 <a href="https://zephyrproject-rtos.github.io/example-application/doxygen">
   <img alt="API Documentation" src="https://img.shields.io/badge/API-documentation-3D578C?logo=c&logoColor=white">
 </a>
+<br />
+<img width="360" alt="shape_3FWSg8mxSBF3motfyvrGN at 24-08-13 17 33 10" src="https://github.com/user-attachments/assets/c300b66f-24a9-4c4f-a74e-2d8c7c23c4da">
 
 This repository contains a Zephyr example application. The main purpose of this
 repository is to serve as a reference on how to structure Zephyr-based
@@ -59,7 +61,7 @@ the ``example-application`` and all Zephyr modules will be cloned. Run the follo
 command:
 
 ```shell
-# initialize my-workspace for the example-application (main branch)
+# initialize my-workspace for the panomic-application (main branch)
 west init -m git@github.com:Technoculture/panomic-tray-firmware --mr main panomic-workspace
 # update Zephyr modules
 cd panomic-workspace
@@ -71,7 +73,7 @@ west update
 To build the application, run the following command:
 
 ```shell
-cd example-application
+cd panomic-workspace
 west build -b $BOARD app
 ```
 
