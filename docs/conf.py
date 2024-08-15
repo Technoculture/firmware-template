@@ -7,14 +7,14 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Firmware Template'
-copyright = '2024, The Zephyr Community'
-author = 'The Zephyr Community'
+copyright = '2024, Technoculture Research Pvt. Ltd.'
+author = 'Technoculture Research Pvt. Ltd.'
 release = '1.0.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.intersphinx', 'breathe']
+extensions = ['breathe', 'sphinx.ext.intersphinx']
 
 templates_path = ['_templates']
 exclude_patterns = ['_build_sphinx', 'Thumbs.db', '.DS_Store']
