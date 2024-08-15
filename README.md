@@ -74,12 +74,13 @@ To build the application, run the following command:
 
 ```shell
 cd panomic-workspace
+export BOARD=panomic_board
 west build -b $BOARD app
 ```
 
 where `$BOARD` is the target board.
 
-You can use the `custom_plank` board found in this
+You can use the `panomic_board` board found in this
 repository. Note that Zephyr sample boards may be used if an
 appropriate overlay is provided (see `app/boards`).
 

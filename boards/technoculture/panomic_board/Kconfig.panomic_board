@@ -1,0 +1,6 @@
+# Copyright (c) 2017, Erwin Rol <erwin@erwinrol.com>
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_PANOMIC_BOARD
+  bool "Use Olimex STM32 E407 Board"
+	select SOC_STM32F407XG
