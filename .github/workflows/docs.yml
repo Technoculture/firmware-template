@@ -20,11 +20,11 @@ jobs:
           wget --no-verbose "https://github.com/doxygen/doxygen/releases/download/Release_${DOXYGEN_VERSION//./_}/doxygen-${DOXYGEN_VERSION}.linux.bin.tar.gz"
           tar xf doxygen-${DOXYGEN_VERSION}.linux.bin.tar.gz
           echo "${PWD}/doxygen-${DOXYGEN_VERSION}/bin" >> $GITHUB_PATH
-          pip install -r doc/requirements.txt
+          pip install -r docs/requirements.txt
 
       - name: Build
         run: |
-          cd doc
+          cd docs
           doxygen
 
           SPHINXOPTS="-W" make html
@@ -41,13 +41,13 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: doc/deploy
+          path: docs/deploy
 
       - name: Upload artifacts
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
-          path: doc/deploy
+          path: docs/deploy
 
   deploy:
     runs-on: ubuntu-22.04
