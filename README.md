@@ -3,7 +3,7 @@
 <a href="https://github.com/technoculture/firmware-template/actions/workflows/build.yml?query=branch%3Amain">
   <img src="https://github.com/technoculture/firmware-template/actions/workflows/build.yml/badge.svg?event=push">
 </a>
-<a href="https://github.com/technoculture/firmware-template/actions/workflows/docs.yml?query=branch%3Amain">
+<!-- <a href="https://github.com/technoculture/firmware-template/actions/workflows/docs.yml?query=branch%3Amain">
   <img src="https://github.com/technoculture/firmware-template/actions/workflows/docs.yml/badge.svg?event=push">
 </a>
 <a href="https://technoculture.github.io/firmware-template/">
@@ -11,7 +11,7 @@
 </a>
 <a href="https://technoculture.github.io/firmware-template/doxygen">
   <img alt="API Documentation" src="https://img.shields.io/badge/API-documentation-3D578C?logo=c&logoColor=white">
-</a>
+</a> -->
 <br />
 <img width="360" alt="shape_3FWSg8mxSBF3motfyvrGN at 24-08-13 17 33 10" src="https://github.com/user-attachments/assets/c300b66f-24a9-4c4f-a74e-2d8c7c23c4da">
 

@@ -27,7 +27,7 @@ html_theme = 'alabaster'
 # -- Options for Intersphinx -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html
 
-intersphinx_mapping = {'zephyr': ('https://docs.zephyrproject.org/latest/', None)}
+intersphinx_mapping = {'zephyr': ('https://docs.zephyrproject.org/latest', None)}
 
 ## -- Options for Breathe ----------------------------------------------------
 # https://breathe.readthedocs.io/en/latest/index.html
