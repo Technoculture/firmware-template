@@ -6,10 +6,10 @@
 <a href="https://github.com/technoculture/firmware-template/actions/workflows/docs.yml?query=branch%3Amain">
   <img src="https://github.com/technoculture/firmware-template/actions/workflows/docs.yml/badge.svg?event=push">
 </a>
-<a href="https://zephyrproject-rtos.github.io/example-application">
+<a href="https://technoculture.github.io/firmware-template/">
   <img alt="Documentation" src="https://img.shields.io/badge/documentation-3D578C?logo=sphinx&logoColor=white">
 </a>
-<a href="https://zephyrproject-rtos.github.io/example-application/doxygen">
+<a href="https://technoculture.github.io/firmware-template/doxygen">
   <img alt="API Documentation" src="https://img.shields.io/badge/API-documentation-3D578C?logo=c&logoColor=white">
 </a>
 <br />
@@ -107,10 +107,10 @@ west twister -T tests --integration
 ### Documentation
 
 A minimal documentation setup is provided for Doxygen and Sphinx. To build the
-documentation first change to the ``doc`` folder:
+documentation first change to the ``docs`` folder:
 
 ```shell
-cd doc
+cd docs
 ```
 
 Before continuing, check if you have Doxygen installed. It is recommended to
