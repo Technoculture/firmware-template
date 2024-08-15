@@ -94,7 +94,13 @@ west build -b $BOARD app -- -DOVERLAY_CONFIG=debug.conf
 Once you have built the application, run the following command to flash it:
 
 ```shell
-west flash
+west flash -r jlink
+```
+
+In order to debug the program using gdb, run the following command:
+
+```shell
+west debug -r jlink
 ```
 
 ### Testing

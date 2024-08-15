@@ -23,14 +23,14 @@
   leds {
     compatible = "gpio-leds";
     green_led_1: led_1 {
-      gpios = <&gpioc 13 GPIO_ACTIVE_HIGH>;
+      gpios = <&gpioc 14 GPIO_ACTIVE_HIGH>; // is actually 13: TODO fix jugaad
       label = "LED1";
     };
   };
 
   blink_led: blink-led {
     compatible = "blink-gpio-led";
-    led-gpios = <&gpioc 14 GPIO_ACTIVE_HIGH>;
+    led-gpios = <&gpioc 13 GPIO_ACTIVE_HIGH>;
     blink-period-ms = <1000>;
   };
 
