@@ -103,6 +103,10 @@ In order to debug the program using gdb, run the following command:
 west debug -r jlink
 ```
 
+When accessing the shell or console, use USART3 on the Olimexe407 board
+<br />
+<img width="360" alt="uart" src="https://github.com/user-attachments/assets/81d9f513-b26d-4965-b07d-c114b8efe631">
+
 ### Testing
 
 To execute Twister integration tests, run the following command:
