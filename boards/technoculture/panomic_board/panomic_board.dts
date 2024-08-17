@@ -13,8 +13,8 @@
   compatible = "technoculture,panomic_board";
 
   chosen {
-    zephyr,console = &usart1;
-    zephyr,shell-uart = &usart1;
+    zephyr,console = &usart3;
+    zephyr,shell-uart = &usart3;
     zephyr,sram = &sram0;
     zephyr,flash = &flash0;
     zephyr,ccm = &ccm0;

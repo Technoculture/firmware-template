@@ -24,6 +24,7 @@ int main(void)
   struct sensor_value last_val = {0}, val;
 
   printk("Firmware Template %s\n", APP_VERSION_STRING);
+  LOG_DBG("Logging works.");
 
   sensor = DEVICE_DT_GET(DT_NODELABEL(example_sensor));
   if (!device_is_ready(sensor))
