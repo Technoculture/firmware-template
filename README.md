@@ -74,12 +74,13 @@ To build the application, run the following command:
 
 ```shell
 cd panomic-workspace
+export BOARD=panomic_board
 west build -b $BOARD app
 ```
 
 where `$BOARD` is the target board.
 
-You can use the `custom_plank` board found in this
+You can use the `panomic_board` board found in this
 repository. Note that Zephyr sample boards may be used if an
 appropriate overlay is provided (see `app/boards`).
 
@@ -93,8 +94,18 @@ west build -b $BOARD app -- -DOVERLAY_CONFIG=debug.conf
 Once you have built the application, run the following command to flash it:
 
 ```shell
-west flash
+west flash -r jlink
 ```
+
+In order to debug the program using gdb, run the following command:
+
+```shell
+west debug -r jlink
+```
+
+When accessing the shell or console, use USART3 on the Olimexe407 board
+<br />
+<img width="360" alt="uart" src="https://github.com/user-attachments/assets/81d9f513-b26d-4965-b07d-c114b8efe631">
 
 ### Testing
 

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 board:
-  name: custom_plank
-  vendor: vendor
+  name: panomic_board
+  vendor: technoculture
   socs:
-    - name: nrf52840
+    - name: stm32f407xx

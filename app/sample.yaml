@@ -7,7 +7,7 @@ sample:
 common:
   build_only: true
   integration_platforms:
-    - custom_plank
+    - panomic_board
     - nucleo_f302r8
 tests:
   app.default: {}

@@ -1,16 +1,18 @@
 # Copyright (c) 2021 Nordic Semiconductor ASA
 # SPDX-License-Identifier: Apache-2.0
 
-identifier: custom_plank
-name: Custom-Plank
-vendor: vendor
+identifier: panomic_board
+name: Panomic-Board
+vendor: technoculture
 type: mcu
 arch: arm
-ram: 256
+ram: 128
 flash: 1024
 toolchain:
   - zephyr
   - gnuarmemb
   - xtools
 supported:
+  - counter
+  - usb_device
   - gpio
