@@ -14,3 +14,8 @@ __pycache__/
 
 # docs
 /docs/_build*
+
+# Temprorary Projects
+# TODO: Remove
+ETH/
+ETH_ping/
