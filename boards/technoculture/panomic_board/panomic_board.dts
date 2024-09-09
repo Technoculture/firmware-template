@@ -13,8 +13,8 @@
   compatible = "technoculture,panomic_board";
 
   chosen {
-    zephyr,console = &usart3;
-    zephyr,shell-uart = &usart1;
+    zephyr,console = &usart1;
+    zephyr,shell-uart = &usart6;
     zephyr,sram = &sram0;
     zephyr,flash = &flash0;
     zephyr,ccm = &ccm0;
@@ -145,4 +145,3 @@ zephyr_udc0: &usbotg_hs {
   pinctrl-names = "default";
   status = "okay";
 };
-
