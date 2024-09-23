@@ -11,17 +11,110 @@
 
 #include <app_version.h>
 
+#include <zephyr/settings/settings.h>
+#include <inttypes.h>
+
 LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 
 #define BLINK_PERIOD_MS_STEP 100U
 #define BLINK_PERIOD_MS_MAX 1000U
 
+
+#define DEFAULT_FOO_VAL_VALUE 1
+
+static uint8_t foo_val = DEFAULT_FOO_VAL_VALUE;
+
+static int foo_settings_set(const char *name, size_t len,
+                            settings_read_cb read_cb, void *cb_arg)
+{
+    const char *next;
+    int rc;
+
+    printk("loading the settings\n");
+
+    if (settings_name_steq(name, "bar", &next) && !next) {
+        if (len != sizeof(foo_val)) {
+            return -EINVAL;
+        }
+
+        rc = read_cb(cb_arg, &foo_val, sizeof(foo_val));
+        if (rc >= 0) {
+            /* key-value pair was properly read.
+             * rc contains value length.
+             */            
+            printf("foo: %d\n", foo_val);
+            return 0;
+        }
+        else{
+            printk("error reading settings  %d\n", rc);
+        }
+        /* read-out error */
+        return rc;
+    }
+
+    return -ENOENT;
+}
+
+static int foo_settings_export(int (*storage_func)(const char *name,
+                                                   const void *value,
+                                                   size_t val_len))
+{
+    return storage_func("foo/bar", &foo_val, sizeof(foo_val));
+}
+
+struct settings_handler my_conf = {
+    .name = "foo",
+    .h_set = foo_settings_set,
+    .h_export = foo_settings_export
+};
+
+
+
 int main(void)
 {
+  int err;
   int ret;
   unsigned int period_ms = BLINK_PERIOD_MS_MAX;
   const struct device *sensor, *blink;
   struct sensor_value last_val = {0}, val;
+
+
+  err = settings_subsys_init();
+    if (err) {
+        printk("Settings subsystem init failed (err %d)\n", err);
+        return 1;
+    }
+    LOG_INF("Settings subsystem init done\n");
+
+    err = settings_register(&my_conf);    
+    if (err) {
+        printk("Failed to register settings handler: %d\n", err);
+    } else {
+        printk("Settings handler registered\n");
+    }
+    LOG_INF("Settings handler registered\n");
+
+    err = settings_load();
+    if (err) {
+        printk("Settings load failed (err %d)\n", err);
+        return 1; // Handle the error as needed
+    } else {
+        printk("Settings loaded successfully\n");
+    }
+    LOG_INF("Settings loaded successfully\n");
+
+   foo_val++;
+    err = settings_save_one("foo/bar", &foo_val, sizeof(foo_val));
+    if (err) {
+        LOG_ERR("Settings save failed (err %d)\n", err);
+    } else {
+        LOG_DBG("foo_val updated and saved: %d\n", foo_val);
+    }
+
+    k_msleep(1000);
+    
+
+
 
   printk("Firmware Template %s\n", APP_VERSION_STRING);
   LOG_DBG("Logging works.");
