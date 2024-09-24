@@ -12,6 +12,7 @@
  / {
 	chosen {
 		zephyr,settings-partition = &storage_partition;
+		zephyr,code-partition = &slot0_partition;
 	};
 };
 
@@ -39,12 +40,12 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 
-        /* First 2 x 32Kb for the mcuboot bootloader */
-		boot_partition: partition@0 {
-			label = "mcuboot";
-			reg = <0x00000000 DT_SIZE_K(32)>;
-			read-only;
-		};
+        // /* First 2 x 32Kb for the mcuboot bootloader */
+		// boot_partition: partition@0 {
+		// 	label = "mcuboot";
+		// 	reg = <0x00000000 DT_SIZE_K(32)>;
+		// 	read-only;
+		// };
 
         /* Second 2 x 32Kb for the Settings Subsystem */
         storage_partition: partition@8000 {
@@ -75,3 +76,31 @@
 		};
 	};
 };
+
+// &ethernet {
+//     status = "okay";
+//     pinctrl-0 = <&eth_mdc_pc1
+// 	&eth_rxd0_pc4
+// 	&eth_rxd1_pc5
+// 	&eth_ref_clk_pa1
+// 	&eth_mdio_pa2
+// 	&eth_col_pa3
+// 	&eth_crs_dv_pa7
+// 	&eth_tx_en_pg11
+// 	&eth_txd0_pg13
+// 	&eth_txd1_pg14>;
+//     pinctrl-names = "default";
+//     phy-mode = "rmii";
+//     phy-handle = <&phy0>;
+//     max-speed = <100>;
+
+//     mdio {
+//         #address-cells = <1>;
+//         #size-cells = <0>;
+//         compatible = "snps,dwmac-mdio";
+//         phy0: ethernet-phy@0 {
+//             reg = <0>;
+//             compatible = "ethernet-phy-id0007.c0f1"; // LAN8710A PHY ID
+//         };
+//     };
+// };
