@@ -9,12 +9,7 @@
  * by Zephyr.
  */
 
- / {
-	chosen {
-		zephyr,settings-partition = &storage_partition;
-		zephyr,code-partition = &slot0_partition;
-	};
-};
+ 
 
 / {
   example_sensor: example-sensor {
@@ -33,49 +28,6 @@
   status = "okay";
 };
 
-&flash0 {
-
-	partitions {
-		compatible = "fixed-partitions";
-		#address-cells = <1>;
-		#size-cells = <1>;
-
-        // /* First 2 x 32Kb for the mcuboot bootloader */
-		// boot_partition: partition@0 {
-		// 	label = "mcuboot";
-		// 	reg = <0x00000000 DT_SIZE_K(32)>;
-		// 	read-only;
-		// };
-
-        /* Second 2 x 32Kb for the Settings Subsystem */
-        storage_partition: partition@8000 {
-			label = "storage";
-			reg = <0x00008000 DT_SIZE_K(32)>;
-		};
-
-		/*
-		 * Here is 1 64Kb page usebale for whatever you want
-		 */
-
-        /* First 3 x 128Kb pages for the application */
-		slot0_partition: partition@20000 {
-			label = "image-0";
-			reg = <0x00020000 DT_SIZE_K(128*3)>;
-		};
-
-        /* Second 3 x 128Kb pages for the application update using mcuboot */
-		slot1_partition: partition@80000 {
-			label = "image-1";
-			reg = <0x00080000 DT_SIZE_K(128*3)>;
-		};
-
-        /* Last 128Kb page for the application update using mcuboot with scratch partition*/
-		scratch_partition: partition@E0000 {
-			label = "image-scratch";
-			reg = <0x000E0000 DT_SIZE_K(128)>;
-		};
-	};
-};
 
 // &ethernet {
 //     status = "okay";
