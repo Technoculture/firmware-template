@@ -18,8 +18,8 @@
     zephyr,sram = &sram0;
     zephyr,flash = &flash0;
     zephyr,ccm = &ccm0;
-    zephyr,settings-partition = &storage_partition;
-		zephyr,code-partition = &slot0_partition;
+    // zephyr,settings-partition = &storage_partition;
+		// zephyr,code-partition = &slot0_partition;
   };
 
   leds {
@@ -140,6 +140,7 @@ zephyr_udc0: &usbotg_hs {
   &eth_txd0_pg13
   &eth_txd1_pg14>;
   pinctrl-names = "default";
+  phy-connection-type = "rmii"; 
 };
 
 &i2c1 {
@@ -163,7 +164,7 @@ zephyr_udc0: &usbotg_hs {
 		};
 
         /* Second 2 x 32Kb for the Settings Subsystem */
-        storage_partition: partition@8000 {
+    storage_partition: partition@8000 {
 			label = "storage";
 			reg = <0x00008000 DT_SIZE_K(32)>;
 		};
