@@ -68,14 +68,14 @@ cd panomic-workspace
 west update
 ```
 
-### Building and running
+### Building the application and running
 
 To build the application, run the following command:
 
 ```shell
 cd panomic-workspace
 export BOARD=panomic_board
-west build -b $BOARD app
+west build -p auto -b $BOARD app -d build-slot0
 ```
 
 where `$BOARD` is the target board.
@@ -106,6 +106,36 @@ west debug -r jlink
 When accessing the shell or console, use USART3 on the Olimexe407 board
 <br />
 <img width="360" alt="uart" src="https://github.com/user-attachments/assets/81d9f513-b26d-4965-b07d-c114b8efe631">
+
+
+### Building the MCUBoot BootLoader
+
+To build the bootloader, run the following command:
+
+```shell
+cd panomic-workspace
+export BOARD=panomic_board
+west build -p always -b $BOARD ./bootloader/mcuboot/boot/zephyr -d build-mcuboot -DDTC_OVERLAY_FILE='../../../app/boards/panomic_board_bootloader.overlay'
+```
+
+where `$BOARD` is the target board.
+
+
+### Building the application on build-slot1 folder
+
+To build the application, run the following command:
+
+```shell
+cd panomic-workspace
+export BOARD=panomic_board
+west build -p auto -b $BOARD app -d build-slot1
+```
+
+where `$BOARD` is the target board.
+
+Note: the build command and configurations for the slot1 are exactly the same used for slot0 but the building path. This because the ratio is that you continue to dev for slot0 and use it in future DFU.
+The existance of slot1 build directory is for testing purposes only.
+
 
 ### Testing
 

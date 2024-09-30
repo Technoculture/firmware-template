@@ -18,8 +18,8 @@
     zephyr,sram = &sram0;
     zephyr,flash = &flash0;
     zephyr,ccm = &ccm0;
-    // zephyr,settings-partition = &storage_partition;
-		// zephyr,code-partition = &slot0_partition;
+    zephyr,code-partition = &slot0_partition;
+    zephyr,settings-partition = &storage_partition;
   };
 
   leds {
