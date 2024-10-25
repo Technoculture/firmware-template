@@ -21,3 +21,5 @@ manifest:
           - hal_stm32  # required by the nucleo_f302r8 board (STM32 based)
           - percepio
           - segger
+          - fatfs
+          - littlefs

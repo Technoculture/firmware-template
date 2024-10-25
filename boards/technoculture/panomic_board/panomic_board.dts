@@ -145,3 +145,27 @@ zephyr_udc0: &usbotg_hs {
   pinctrl-names = "default";
   status = "okay";
 };
+
+&spi1 {
+  status = "okay";
+  cs-gpios = <&gpioa 4 GPIO_ACTIVE_LOW>;    /* Adjust GPIO pin as needed */
+  pinctrl-0 = <&spi1_sck_pa5 
+               &spi1_miso_pa6 
+               &spi1_mosi_pb5>;
+  pinctrl-names = "default";
+
+  sdhc0: sdhc@0 {
+      compatible = "zephyr,sdhc-spi-slot";
+      reg = <0>;
+      status = "okay";
+      mmc {
+          compatible = "zephyr,sdmmc-disk";
+          status = "okay";
+      };
+      spi-max-frequency = <25000000>;    /* Start with lower frequency */
+      
+      /* Remove these if using Mode 0 */
+      /* spi-clock-mode-cpol; */
+      /* spi-clock-mode-cpha; */
+  };
+};
