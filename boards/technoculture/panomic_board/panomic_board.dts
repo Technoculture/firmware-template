@@ -158,10 +158,10 @@ zephyr_udc0: &usbotg_hs {
       compatible = "zephyr,sdhc-spi-slot";
       reg = <0>;
       status = "okay";
-      mmc {
-          compatible = "zephyr,sdmmc-disk";
-          status = "okay";
-      };
+      // mmc {
+      //     compatible = "zephyr,sdmmc-disk";
+      //     status = "okay";
+      // };
       spi-max-frequency = <25000000>;    /* Start with lower frequency */
       
       /* Remove these if using Mode 0 */

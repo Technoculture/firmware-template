@@ -23,7 +23,7 @@
  *  in ffconf.h
  */
 #define DISK_DRIVE_NAME "SD"
-#define DISK_MOUNT_PT "/"DISK_DRIVE_NAME":"
+#define DISK_MOUNT_PT "/SD:"
 
 static FATFS fat_fs;
 /* mounting info */
@@ -52,7 +52,6 @@ static struct fs_mount_t mp = {
 #else
 #define FS_RET_OK 0
 #endif
-
 
 LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 #define BLINK_PERIOD_MS_STEP 100U
@@ -184,60 +183,68 @@ int main(void)
   {
 		printk("Disk mounted.\n");
 
-    /*might requires to create settings directory whever the sd is formated*/
-
-    //  res = fs_mkdir(CONFIG_SETTINGS_FILE_DIR);
-    // if (res != 0 && res != -EEXIST) {
-    //     printk("Failed to create settings directory (err %d)\n", res);
-    //     return res;
-    // }
+    /* Create settings directory if needed */
+    struct fs_dirent entry;
+    /* Check if directory exists first */
+    res = fs_stat(CONFIG_SETTINGS_FILE_DIR, &entry);
+    if (res == -ENOENT) {
+        /* Directory doesn't exist, create it */
+        res = fs_mkdir(CONFIG_SETTINGS_FILE_DIR);
+        if (res != 0) {
+            printk("Failed to create settings directory (err %d)\n", res);
+            return res;
+        }
+        printk("Created settings directory\n");
+    } else if (res != 0) {
+        /* Some other error */
+        printk("Error checking settings directory (err %d)\n", res);
+        return res;
+    }
 
     if (lsdir(disk_mount_pt) == 0){
-      printk("Error mounting disk.\n");
+      printk("Error listing disk contents.\n");
     }
 
-
-
-    /************** Initialize settings subsystem **************/
-
+    /* Initialize settings subsystem */
     err = settings_subsys_init();
-    if (err) {
-        printk("Settings subsystem init failed (err %d)\n", err);
-        return err;
+    if (err && err != -EEXIST) {
+      LOG_ERR("Settings subsystem init failed (err %d)", err);
+      /* Continue anyway */
     }
-    LOG_INF("Settings subsystem init done\n");
+
+    /* Register the settings handler */
+    err = settings_register(&my_conf);    
+    if (err) {
+      LOG_ERR("Settings register failed (err %d)", err);
+      /* Continue anyway */
+    }
+
+    /* Load settings */
+    err = settings_load();
+    if (err) {
+      LOG_ERR("Settings load failed (err %d)", err);
+      /* Continue anyway */
+    }
+
+    foo_val++;
+    err = settings_save_one("foo/bar", &foo_val, sizeof(foo_val));
+    if (err) {
+        LOG_ERR("Settings save failed (err %d)", err);
+        printk("Settings save failed (err %d)\n", err);
+    } else {
+        LOG_DBG("foo_val updated and saved: %d", foo_val);
+        printk("foo_val updated and saved: %d\n", foo_val);
+        
+        /* Add this: Force garbage collection to clean up old entries */
+        if (foo_val % 5 == 0) {  // Only do this occasionally to avoid wear
+            printk("Performing settings garbage collection\n");
+            settings_save();  // This will rewrite the file without duplicates
+        }
+    }
+
+    k_msleep(1000);
     
   }
-
-  err = settings_register(&my_conf);    
-  if (err) {
-      printk("Failed to register settings handler: %d\n", err);
-  } else {
-      printk("Settings handler registered\n");
-  }
-  LOG_INF("Settings handler registered\n");
-
-  err = settings_load();
-  if (err) {
-      printk("Settings load failed (err %d)\n", err);
-      return 1; // Handle the error as needed
-  } else {
-      printk("Settings loaded successfully\n");
-  }
-  LOG_INF("Settings loaded successfully\n");
-
-  foo_val++;
-  err = settings_save_one("foo/bar", &foo_val, sizeof(foo_val));
-  if (err) {
-      LOG_ERR("Settings save failed (err %d)\n", err);
-      printk("Settings save failed (err %d)\n", err);
-  } else {
-      LOG_DBG("foo_val updated and saved: %d\n", foo_val);
-      printk("foo_val updated and saved: %d\n", foo_val);
-  }
-
-  k_msleep(1000);
-    
 
 /************** Blinck & sensor initialization **************/
 
